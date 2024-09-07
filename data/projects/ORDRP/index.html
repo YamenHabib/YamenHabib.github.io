@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="RL, MOP, LAP, SAC">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dynamic Reference RL</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Enhancing Exploration via Off-Reward Dynamic Reference Reinforcement Learning</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <!-- <a href="">Anonymous Author</a></span>  -->
+              Anonymous Author
+          </div>
+
+          <!-- <div class="is-size-5 publication-authors">
+            <span class="author-block">UPF</span>
+          </div> -->
+
+          <!-- <div class="column has-text-centered"> 
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In reinforcement learning (RL), balancing exploration and exploitation is essential for maximizing a target reward function. 
+            Traditional methods often employ regularizers to prevent the policy from becoming deterministic too early, such as penalizing deviations from a reference policy. 
+            This paper introduces a novel approach by training an off-reward dynamic reference policy (ORDRP) with a different reward function alongside the target policy to guide exploration.</p>
+          <p>
+            We use Kullback–Leibler divergence as a regularization technique and train the ORDRP either with the maximum occupancy principle or Laplacian intrinsic off-rewards. 
+          </p>
+          <p>
+            We prove the convergence of the ORDRP iteration method and validate our theory within an actor-critic framework. 
+            Our experiments in challenging environments reveal that incorporating an ORDRP enhances exploration, resulting in superior performance and higher sampling efficiency in benchmarks compared to state of the art baselines.
+            Our findings suggest that dynamically training a reference policy with an off-reward function alongside the main policy can significantly improve learning outcomes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <h2 class="title is-3 has-text-centered">Intuition</h2>
+          <img src="static/images/intro.jpg">
+        </div>
+          
+        <div class="content has-text-justified">
+          <p>
+            We assume that the target policy \(\pi\) is improved at each iteration: to maximize reward, but there is also a penalty (Kullback-Leibler (KL)) for deviating too much from the current reference policy $\mu$. 
+          </p>
+        
+          <p>
+            When using a static uniform reference policy (Fig. A, bottom panel), the KL penalty tends to greatly reduce the likelihood of an action that has been discovered to be good by the target policy (peak of the Gaussian), while it increases the likelihood of harmful or useless actions due to the uninformative regularization term (left tail of the Gaussian).
+          </p>
+
+          <p>
+            When using the current target policy as the reference (Fig. B, bottom), there are minimal differences between the new target policy and the reference policy, which do not significantly enhance exploration beyond what has already been learned (Fig. B, top).
+          </p>
+
+          <p>
+            In contrast, a dynamic reference policy that lies between purely uninformative and purely target-aligned references (Fig. C, bottom) can inject relevant information about historically useful actions while remaining flexible (Fig. C, top).
+          </p>
+
+          This suggests that for the reference policy to be effective, it should follow a different reward function than the target one (i.e., being off-reward), such that it retains knowledge about generally good and safe actions while dynamically adapting (i.e., being dynamic) as new regions of action-state space are explored during learning.  
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <h2 class="title is-3 has-text-centered">Off-Reward Dynamic Reference Policy (ORDRP)</h2>
+        </div>
+        
+        <div class="content has-text-justified">
+          <p>
+            In our approach, the dynamic reference policy \(\mu\) has its own distinct off-reward function defined based on the same MDP. 
+            We assume that the series of training reference policies \(\{\mu^n\}_{n=0}^{\infty}\) converge to an optimal policy \(\mu^{*}\) defined as \(\mu^{*} = \arg \max_{\mu} \sum_{t=0}^{\infty} \gamma^t \mathbb{E}_{(s_{t},a_{t})\sim p_{\pi}} [f(\mathcal{M})]\).
+            Here, \( f(\mathcal{M}) \) represents a function defined over the Markov Decision Process (MDP).
+          </p>
+          
+          <div class="content has-text-justified">
+            <h4 class="title is-5">Off-Reward Dynamic Reference Value Iteration</h4> 
+            
+            <p>
+              \begin{equation}\label{eq:state_value_function_sequence_def}
+                \tilde{V}^{n+1}(s_{t}) = (B_{\mu^n} \tilde{V}^n)(s_t) = \alpha \log \sum_{a_{t} \in A} \mu^{n}(a_{t}|s_{t}) \exp \left( \frac{1}{\alpha} (r(s_{t}, a_{t}) + \gamma \mathbb{E}_{s_{t+1} \sim p} [\tilde{V}^{n}(s_{t+1})]) \right) \, .
+              \end{equation}
+
+            </p>
+          </div>
+
+          <div>
+            <h4 class="title is-5">Off-Reward Dynamic Reference Policy Iteration</h4>  
+            <p>
+              \begin{equation}
+                \pi_0 \xrightarrow[\mu_1]{\text{E}} Q_{\pi_0/\mu_1} \xrightarrow[\mu_1]{\text{I}} \pi_1 \xrightarrow[\mu_2]{\text{E}} Q_{\pi_1/\mu_2} \xrightarrow[\mu_2]{\text{I}} \pi_2 \xrightarrow[\mu_3]{\text{E}} \dots \xrightarrow[\mu^\infty]{\text{I}} \pi^\infty \xrightarrow[\mu_\infty]{\text{E}} Q_{\pi^\infty/\mu^\infty}.
+              \end{equation}
+            </p>
+          </div>
+
+          <div>
+            <h4 class="title is-5">MOP reference</h4> 
+            <p>
+              The Maximum Occupancy Principle (MOP) is a novel approach to modeling agent's behavior, which diverges from traditional reward-maximization frameworks. 
+              The goal of MOP is to maximize the occupancy of future action-state paths, rather than seeking extrinsic rewards. 
+              This principle posits that agents are intrinsically motivated to explore and visit rare or unoccupied action-states, thus ensuring a broad and diverse range of behaviors over time. 
+            </p>
+            <p>
+              The off-reward function in MOP is the entropy of the paths taken by the agent,
+              \[
+              R(\tau) = -\sum_{t=0}^{\infty} \gamma^t \ln \left( \mu_{\text{MOP}}^{\alpha}(a_t | s_t) p^{\beta}(s_{t+1} | s_t, a_t) \right)
+              \;,
+              \]
+              where \(\alpha > 0\) and \(\beta \geq 0\) are weights for actions and states, respectively, and \(\gamma\) is the discount factor. 
+            </p>
+            <p>
+              The agent maximizes this intrinsic reward by preferring low-probability actions and transitions, which encourages exploration and the occupancy of a wide range of action-states. 
+              This intrinsic motivation leads to behaviors that appear goal-directed and complex without the necessity of explicitly defined extrinsic rewards. 
+            </p>
+          </div>
+
+          <div>
+            <h4 class="title is-5">Lap reference</h4> 
+            We can think of learning a low-dimensional state representation as building a mapping between the original space and a low-dimensional representation such that near/distant points in the original space are near/distant in the representation. 
+            This problem is referred to as graph drawing problem.
+
+            In the approach taken here, valid for large and continuous spaces, we want to build a set of features \(\phi(s) = (f_1(s),...,f_d(s)) \in \mathbb{R}^d\) that faithfully represent the input space \(s \in S\). 
+            
+            Once the embedding function \(\phi(s) = [f_1(s), \ldots, f_d(s)]\) has been learned, we ask our off-reward dynamic reference policy to maximize the expected cumulative reward \(\sum_{t=0}^{\infty} \gamma^t R(s_{t}, a_{t})\), where the instantaneous off-reward \(R(s_{t}, a_{t})\) is defined as
+
+            \[
+            R(s_{t}, a_{t}) = \frac{||\phi(s_{t+1})-\phi(s_{t})||_{2}^2}{||\phi(s_{t+1})||_{2}^2 + ||\phi(s_{t})||_{2}^2}
+            \;.
+            \]
+            This novel off-reward function consistently encourages the agent to transition to states that are furthest from the current one, which leads to improved exploration. This approach effectively prevents the agent from wasting time on inefficient transitions that result in minimal changes to the embedded state space, leading to a more sample efficient algorithm. 
+
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="videos" class="section">
+  <div class="container ">
+    <h2 class="title is-3 has-text-centered">Solving Escape Room</h2>
+    
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <h4 class="title is-4">Soft Actor Critic</h4>
+          <video id="video_sac" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/video_sac.mp4"
+                    type="video/mp4">
+          </video>
+          <p>
+            Incorporates entropy regularization into its objective function to balance exploration and exploitation. 
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <h4 class="title is-4">MOP Reference</h4>
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="video_mop" controls playsinline height="100%">
+              <source src="./static/videos/video_mop.mp4"
+                      type="video/mp4">
+            </video>
+            <p>
+              Maximizes the occupancy of action-state space by maximizing cumulative action entropy
+            </p> 
+          </div>
+
+        </div>
+      </div>
+
+      <div class="column">
+        <h4 class="title is-4">Lap Reference</h4>
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="video_lap" controls playsinline height="100%">
+              <source src="./static/videos/video_lap.mp4"
+                      type="video/mp4">
+            </video>
+            <p>
+              Leverages spectral information from the Laplacian of the transition matrix to guide exploration by encouraging the agent to visit spectrally distinct states.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+    <div class="content has-text-centered"">
+      <img src="static/images/escape_room_done.jpg" style="width: 75%;">
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container ">
+    <h2 class="title is-3 has-text-centered">Mujoco Benchmark</h2>
+    
+    <div class="content has-text-centered"">
+      
+    <table>
+      <thead>
+          <tr>
+              <th>Metric/Method</th>
+              <th>SAC</th>
+              <th>PPO</th>
+              <th>TD3</th>
+              <th>DDPG</th>
+              <th>MOP reference</th>
+              <th>Lap reference</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>Ant-v4 500k</td>
+              <td>5754</td>
+              <td>1431</td>
+              <td>3857</td>
+              <td>-521</td>
+              <td><strong>6166</strong></td>
+              <td>6016</td>
+          </tr>
+          <tr>
+              <td>Ant-v4 1M</td>
+              <td>6427</td>
+              <td>1929</td>
+              <td>4378</td>
+              <td>413</td>
+              <td>6647</td>
+              <td><strong>6695</strong></td>
+          </tr>
+          <tr>
+              <td>Hum-v4 500k</td>
+              <td>4761</td>
+              <td>546</td>
+              <td>93</td>
+              <td>130</td>
+              <td>4972</td>
+              <td><strong>5294</strong></td>
+          </tr>
+          <tr>
+              <td>Hum-v4 1M</td>
+              <td>5316</td>
+              <td>661</td>
+              <td>93</td>
+              <td>127</td>
+              <td>5075</td>
+              <td><strong>5489</strong></td>
+          </tr>
+          <tr>
+              <td>Walker2d-v4 500k</td>
+              <td>3347</td>
+              <td>2781</td>
+              <td>3587</td>
+              <td>396</td>
+              <td>3656</td>
+              <td><strong>3919</strong></td>
+          </tr>
+          <tr>
+              <td>Walker2d-v4 1M</td>
+              <td>4297</td>
+              <td>3444</td>
+              <td>4172</td>
+              <td>1449</td>
+              <td>4173</td>
+              <td><strong>4558</strong></td>
+          </tr>
+          <tr>
+              <td>Hopper-v4 500k</td>
+              <td>2292</td>
+              <td>961</td>
+              <td><strong>3204</strong></td>
+              <td>1450</td>
+              <td>2209</td>
+              <td>1691</td>
+          </tr>
+          <tr>
+              <td>Hopper-v4 1M</td>
+              <td>2766</td>
+              <td>935</td>
+              <td><strong>3294</strong></td>
+              <td>1721</td>
+              <td>2784</td>
+              <td>2394</td>
+          </tr>
+          <tr>
+              <td>Cheetah-v4 500k</td>
+              <td>8048</td>
+              <td>4840</td>
+              <td>8777</td>
+              <td><strong>9968</strong></td>
+              <td>8348</td>
+              <td>9098</td>
+          </tr>
+          <tr>
+              <td>Cheetah-v4 1M</td>
+              <td>9378</td>
+              <td>5463</td>
+              <td>10304</td>
+              <td><strong>11607</strong></td>
+              <td>9702</td>
+              <td>10516</td>
+          </tr>
+          <tr>
+              <td>mean</td>
+              <td>5238</td>
+              <td>2299</td>
+              <td>4175</td>
+              <td>2674</td>
+              <td><strong>5373</strong></td>
+              <td><strong>5567</strong></td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <h2 class="title is-3 has-text-centered">Conclusion</h2>
+        </div>
+          
+        <div class="content has-text-justified">
+          <p>
+            The findings from our experiments highlight that even state-of-the-art methods often struggle with directionless exploration or overcommitment to suboptimal policies. 
+            Our ORDRP approach addresses these challenges by providing a reference policy that evolves in response to the learning environment. 
+            This adaptive nature allows for more structured exploration, reducing the risk of inefficient learning trajectories. 
+          </p>
+
+          <p>
+            Our study explored a novel approach to RL by introducing an off-reward dynamic reference policy to guide the main policy through complex learning environments. 
+            This reference policy evolves alongside the target policy, allowing for more targeted exploration and reducing the inefficiencies of traditional exploration methods. 
+            Our approach demonstrates that incorporating an off-reward reference policy into RL improves convergence rates and enhances performance in various tasks. 
+            The off-reward functions that we used, based on MOP and graph Laplacian, demonstrated to be much more efficient in exploring, learning and optimizing target rewards in slightly more involved environments than the ones typically considered. 
+          </p>
+
+          <p>
+            The experiments conducted in this project, including the Escape Room scenario and MuJoCo Benchmark Evaluation, demonstrate the success of our method. 
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a> -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a> and <a href="https://jonbarron.info/">Jon Barron</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
