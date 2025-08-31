@@ -83,6 +83,53 @@
     style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
     <tbody>
 
+           <tr onmouseout="nuvo_stop()" onmouseover="nuvo_start()">
+        <td style="padding:20px;width:25%;vertical-align:middle">
+          <div class="one">
+            <div class="two" id='nuvo_image'><video  width=100% muted autoplay loop>
+            <source src="images/mop.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </video></div>
+            <img src='images/mop.png' width=100%>
+          </div>
+          <script type="text/javascript">
+            function nuvo_start() {
+              document.getElementById('nuvo_image').style.opacity = "1";
+            }
+
+            function nuvo_stop() {
+              document.getElementById('nuvo_image').style.opacity = "0";
+            }
+            nuvo_stop()
+          </script>
+        </td>
+        <td style="padding:20px;width:75%;vertical-align:middle">
+          <a href="UAQ/">
+            <span class="papertitle">Unsupervised Action-Policy Quantization via Maximum Entropy Mixture Policies with Minimum Entropy Components</span>
+          </a>
+          <br>
+          <a href="https://yamenhabib.com">Yamen Habib</a>,
+          <strong>Dmytro Grytskyy</strong>,
+          <a href="https://www.upf.edu/web/ruben-moreno-bote">Rubén Moreno-Bote</a>
+          <br>
+          <em>arxiv</em>, 2024
+          <br>
+          
+          <a href="ORDRP/">Project Page</a> 
+          / 
+          <a href="https://x.com/MorenoBote/status/1817952169342984579">Thread</a>
+          /
+          <a href="https://www.nature.com/articles/s41467-024-49711-1">Paper</a>
+          <p></p>
+          <!-- <p>
+          Neural fields let you recover editable UV mappings for the challenging geometries produced by NeRF-like models.
+          </p> -->
+        </td>
+
+    </tr>
+
+
+
       <tr onmouseout="nuvo_stop()" onmouseover="nuvo_start()">
         <td style="padding:20px;width:25%;vertical-align:middle">
           <div class="one">
@@ -121,12 +168,15 @@
           /
           <a href="https://www.nature.com/articles/s41467-024-49711-1">Paper</a>
           <p></p>
-          <p>
+          <!-- <p>
           Neural fields let you recover editable UV mappings for the challenging geometries produced by NeRF-like models.
-          </p>
+          </p> -->
         </td>
+        
     </tr>
 
+
+    
       <tr onmouseout="nuvo_stop()" onmouseover="nuvo_start()">
         <td style="padding:20px;width:25%;vertical-align:middle">
           <div class="one">
@@ -165,9 +215,9 @@
           /
           <a href="https://www.nature.com/articles/s41467-024-49711-1">paper</a>
           <p></p>
-          <p>
+          <!-- <p>
           Neural fields let you recover editable UV mappings for the challenging geometries produced by NeRF-like models.
-          </p>
+          </p> -->
         </td>
     </tr> 
 
