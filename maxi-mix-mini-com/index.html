@@ -59,21 +59,21 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Unsupervised Action-Policy Quantization via Maximum Entropy Mixture Policies with Minimum Entropy Components</h1>
+          <h1 class="title is-1 publication-title">Unsupervised Behavioral Tokenization and Action Quantization via Maximum Entropy Mixture Policies with Minimum Entropy Components</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <!-- <a href="">Anonymous Author</a></span>  -->
-              Anonymous Author
+              Yamen Habib, Dmytro Grytskyy, Rubén Moreno-Bote
           </div>
 
           <!-- <div class="is-size-5 publication-authors">
             <span class="author-block">UPF</span>
           </div> -->
 
-          <!-- <div class="column has-text-centered"> 
+          <div class="column has-text-centered"> 
             <div class="publication-links">
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
+                <a href="https://openreview.net/pdf?id=HhbHw2yInZ"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -81,7 +81,7 @@
                   <span>Paper</span>
                 </a>
               </span>
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://arxiv.org/abs/2011.12948"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -117,8 +117,9 @@
                   </span>
                   <span>Data</span>
                   </a>
+              </span> -->
             </div>
-          </div> -->
+          </div>
 
         </div>
       </div>
@@ -135,10 +136,18 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We introduce an online unsupervised reinforcement learning (RL) framework that autonomously quantizes the agent’s action space into component policies via a joint entropy objective—maximizing the cumulative entropy of an overall mixture policy to ensure diverse, exploratory behavior under the maximum-occupancy principle, while minimizing the entropy of each component to enforce diversity and high specialization. 
-            Unlike existing approaches, our framework tackles action quantization into component policies in a fully principled, unsupervised, online manner. 
-            We prove convergence in the tabular setting through a novel policy-iteration algorithm, then extend to continuous control by fixing the discovered components and deploying them deterministically within an online optimizer to maximize cumulative reward. 
-            Empirical results demonstrate that our {\em maxi-mix-mini-com} entropy-based action-policy quantization provides interpretable, reusable token-like behavioral patterns, yielding a fully online, task-agnostic, scalable architecture that requires no task-specific offline data and transfers readily across tasks.
+            Most reinforcement learning approaches optimize behavior to maximize a taskspecific reward. However, from this, it is difficult to learn transferable token-like
+            behaviors that can be reused and composed to solve arbitrary downstream tasks.
+            We introduce an online unsupervised reinforcement learning framework that autonomously quantizes the agent’s action space into component policies via a joint
+            entropy objective—maximizing the cumulative entropy of an overall mixture policy
+            to ensure diverse, exploratory behavior under the maximum-occupancy principle,
+            while minimizing the entropy of each component to enforce diversity and high
+            specialization. Unlike existing approaches, our framework tackles action quantization into state-dependent component policies in a fully principled, unsupervised,
+            online manner. We prove convergence in the tabular setting through a novel policy
+            iteration algorithm, then extend to continuous control by fixing the discovered
+            components and deploying them deterministically within an online optimizer to
+            maximize cumulative reward. Empirical results demonstrate that our maxi-mixmini-com entropy-based action-policy quantization provides interpretable, reusable
+            token-like behavioral patterns, yielding a fully online, task-agnostic, scalable architecture that requires no task-specific offline data and transfers readily across tasks.
           </p>
         </div>
       </div>
@@ -146,172 +155,30 @@
   </div>
 </section>
 
-<!-- <section class="section">
+<section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column">
         <div class="content has-text-justified">
-          <h2 class="title is-3 has-text-centered">Intuition</h2>
-          <img src="static/images/intro.jpg">
-        </div>
-          
-        <div class="content has-text-justified">
-          <p>
-            We assume that the target policy \(\pi\) is improved at each iteration: to maximize reward, but there is also a penalty (Kullback-Leibler (KL)) for deviating too much from the current reference policy $\mu$. 
-          </p>
-        
-          <p>
-            When using a static uniform reference policy (Fig. A, bottom panel), the KL penalty tends to greatly reduce the likelihood of an action that has been discovered to be good by the target policy (peak of the Gaussian), while it increases the likelihood of harmful or useless actions due to the uninformative regularization term (left tail of the Gaussian).
-          </p>
-
-          <p>
-            When using the current target policy as the reference (Fig. B, bottom), there are minimal differences between the new target policy and the reference policy, which do not significantly enhance exploration beyond what has already been learned (Fig. B, top).
-          </p>
-
-          <p>
-            In contrast, a dynamic reference policy that lies between purely uninformative and purely target-aligned references (Fig. C, bottom) can inject relevant information about historically useful actions while remaining flexible (Fig. C, top).
-          </p>
-
-          This suggests that for the reference policy to be effective, it should follow a different reward function than the target one (i.e., being off-reward), such that it retains knowledge about generally good and safe actions while dynamically adapting (i.e., being dynamic) as new regions of action-state space are explored during learning.  
+            <h2 class="title is-3 has-text-centered">Overview</h2>
+            <style>
+            .overview-image {
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+                width: 60vw;
+                max-width: 100vw;
+                height: auto;
+              }
+              </style>
+              <img class="overview-image" src="static/images/intro.PNG" alt="Overview figure" style="width:60vw;max-width:100vw;height:auto;">
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column">
-        <div class="content has-text-justified">
-          <h2 class="title is-3 has-text-centered">Off-Reward Dynamic Reference Policy (ORDRP)</h2>
-        </div>
-        
-        <div class="content has-text-justified">
-          <p>
-            In our approach, the dynamic reference policy \(\mu\) has its own distinct off-reward function defined based on the same MDP. 
-            We assume that the series of training reference policies \(\{\mu^n\}_{n=0}^{\infty}\) converge to an optimal policy \(\mu^{*}\) defined as \(\mu^{*} = \arg \max_{\mu} \sum_{t=0}^{\infty} \gamma^t \mathbb{E}_{(s_{t},a_{t})\sim p_{\pi}} [f(\mathcal{M})]\).
-            Here, \( f(\mathcal{M}) \) represents a function defined over the Markov Decision Process (MDP).
-          </p>
-          
-          <div class="content has-text-justified">
-            <h4 class="title is-5">Off-Reward Dynamic Reference Value Iteration</h4> 
-            
-            <p>
-              \begin{equation}\label{eq:state_value_function_sequence_def}
-                \tilde{V}^{n+1}(s_{t}) = (B_{\mu^n} \tilde{V}^n)(s_t) = \alpha \log \sum_{a_{t} \in A} \mu^{n}(a_{t}|s_{t}) \exp \left( \frac{1}{\alpha} (r(s_{t}, a_{t}) + \gamma \mathbb{E}_{s_{t+1} \sim p} [\tilde{V}^{n}(s_{t+1})]) \right) \, .
-              \end{equation}
-
-            </p>
-          </div>
-
-          <div>
-            <h4 class="title is-5">Off-Reward Dynamic Reference Policy Iteration</h4>  
-            <p>
-              \begin{equation}
-                \pi_0 \xrightarrow[\mu_1]{\text{E}} Q_{\pi_0/\mu_1} \xrightarrow[\mu_1]{\text{I}} \pi_1 \xrightarrow[\mu_2]{\text{E}} Q_{\pi_1/\mu_2} \xrightarrow[\mu_2]{\text{I}} \pi_2 \xrightarrow[\mu_3]{\text{E}} \dots \xrightarrow[\mu^\infty]{\text{I}} \pi^\infty \xrightarrow[\mu_\infty]{\text{E}} Q_{\pi^\infty/\mu^\infty}.
-              \end{equation}
-            </p>
-          </div>
-
-          <div>
-            <h4 class="title is-5">MOP reference</h4> 
-            <p>
-              The Maximum Occupancy Principle (MOP) is a novel approach to modeling agent's behavior, which diverges from traditional reward-maximization frameworks. 
-              The goal of MOP is to maximize the occupancy of future action-state paths, rather than seeking extrinsic rewards. 
-              This principle posits that agents are intrinsically motivated to explore and visit rare or unoccupied action-states, thus ensuring a broad and diverse range of behaviors over time. 
-            </p>
-            <p>
-              The off-reward function in MOP is the entropy of the paths taken by the agent,
-              \[
-              R(\tau) = -\sum_{t=0}^{\infty} \gamma^t \ln \left( \mu_{\text{MOP}}^{\alpha}(a_t | s_t) p^{\beta}(s_{t+1} | s_t, a_t) \right)
-              \;,
-              \]
-              where \(\alpha > 0\) and \(\beta \geq 0\) are weights for actions and states, respectively, and \(\gamma\) is the discount factor. 
-            </p>
-            <p>
-              The agent maximizes this intrinsic reward by preferring low-probability actions and transitions, which encourages exploration and the occupancy of a wide range of action-states. 
-              This intrinsic motivation leads to behaviors that appear goal-directed and complex without the necessity of explicitly defined extrinsic rewards. 
-            </p>
-          </div>
-
-          <div>
-            <h4 class="title is-5">Lap reference</h4> 
-            We can think of learning a low-dimensional state representation as building a mapping between the original space and a low-dimensional representation such that near/distant points in the original space are near/distant in the representation. 
-            This problem is referred to as graph drawing problem.
-
-            In the approach taken here, valid for large and continuous spaces, we want to build a set of features \(\phi(s) = (f_1(s),...,f_d(s)) \in \mathbb{R}^d\) that faithfully represent the input space \(s \in S\). 
-            
-            Once the embedding function \(\phi(s) = [f_1(s), \ldots, f_d(s)]\) has been learned, we ask our off-reward dynamic reference policy to maximize the expected cumulative reward \(\sum_{t=0}^{\infty} \gamma^t R(s_{t}, a_{t})\), where the instantaneous off-reward \(R(s_{t}, a_{t})\) is defined as
-
-            \[
-            R(s_{t}, a_{t}) = \frac{||\phi(s_{t+1})-\phi(s_{t})||_{2}^2}{||\phi(s_{t+1})||_{2}^2 + ||\phi(s_{t})||_{2}^2}
-            \;.
-            \]
-            This novel off-reward function consistently encourages the agent to transition to states that are furthest from the current one, which leads to improved exploration. This approach effectively prevents the agent from wasting time on inefficient transitions that result in minimal changes to the embedded state space, leading to a more sample efficient algorithm. 
-
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- <section id="videos" class="section">
-  <div class="container ">
-    <h2 class="title is-3 has-text-centered">Ant-v5 Agent Dynamics Under Uniform Component Sampling</h2>
-    
-    <div class="columns is-centered">
-
-      <div class="column">
-        <div class="content">
-          <h4 class="title is-4 "> \(\sigma = 0\) (Deterministic) </h4>
-          <video id="video_sac" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/ant_generate_video_uniform_com_std_0_0_a_0_1.mp4"
-                    type="video/mp4">
-          </video>
-           <p>
-            Incorporates entropy regularization into its objective function to balance exploration and exploitation. 
-          </p> 
-        </div>
-      </div>
-
-      <div class="column">
-        <h4 class="title is-4">\(\sigma = 0.1\)</h4>
-        <div class="columns is-centered">
-          <div class="column content">
-            <video id="video_mop" controls playsinline height="100%">
-              <source src="./static/videos/ant_generate_video_uniform_com_std_0_1_a_0_1.mp4"
-                      type="video/mp4">
-            </video>
-            <p>
-              Maximizes the occupancy of action-state space by maximizing cumulative action entropy
-            </p>  
-          </div>
-
-        </div>
-      </div>
-
-      <div class="column">
-        <h4 class="title is-4">\(\sigma = 0.2\)</h4>
-        <div class="columns is-centered">
-          <div class="column content">
-            <video id="video_lap" controls playsinline height="100%">
-              <source src="./static/videos/ant_generate_video_uniform_com_std_0_2_a_0_1.mp4"
-                      type="video/mp4">
-            </video>
-            <p>
-              Leverages spectral information from the Laplacian of the transition matrix to guide exploration by encouraging the agent to visit spectrally distinct states.
-            </p> 
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section> 
- -->
 
 <section id="videos_ant_det_vs_stoc" class="section">
   <div class="container ">
@@ -321,30 +188,41 @@
 
       <div class="column">
         <div class="content">
-          <h2 class="title is-4 has-text-centered"> \(k \sim w(s)\) </h2>
-          <h2 class="title is-4 has-text-centered"> (Stochastic) </h2>
+          <h2 class="title is-4 has-text-centered"> \(k \sim w(s), \quad a \sim \pi_k(\cdot|s)\) </h2>
+          <style>
+            #videos_ant_det_vs_stoc p {
+              text-align: justify;
+            }
+          </style>
+          <p>
+            The agent samples a component \(k\) from a state-dependent categorical distribution \(w(s)\) at each time step, then sample an action from component policy \(\pi_k\). 
+          </p>
+
           <video id="video_sac" autoplay controls muted loop playsinline height="100%">
             <source src="./static/videos/ant_agent_video_f20250723_002513_compressed.mp4"
                     type="video/mp4">
           </video>
-          <!-- <p>
-            Incorporates entropy regularization into its objective function to balance exploration and exploitation. 
-          </p> -->
+          
         </div>
       </div>
 
       <div class="column">
-        <h2 class="title is-4 has-text-centered"> \(k \sim Uniform \{0, ..., K\}, \quad \sigma_k = 0\)</h2>
-        <h2 class="title is-4 has-text-centered"> (Deterministic)</h2>
+        <h2 class="title is-4 has-text-centered"> \(k \sim Uniform \{0, ..., K\}, \quad a = \mu_k\)</h2>
         <div class="columns is-centered">
           <div class="column content">
+            <style>
+            #videos_ant_det_vs_stoc p {
+              text-align: justify;
+            }
+            </style>
+            <p>
+              The agent samples a component \(k\) uniformly at random from \(\{0, ..., K\}\) at each time step, then use the mode \( \mu_k \) of component policy \(\pi_k\) as quantized action. 
+            </p> 
             <video id="video_mop" autoplay controls muted loop playsinline height="100%">
               <source src="./static/videos/ant_agent_video_uniform_random_component_20250723_004920_compressed.mp4"
                       type="video/mp4">
             </video>
-            <!-- <p>
-              Maximizes the occupancy of action-state space by maximizing cumulative action entropy
-            </p>  -->
+            
           </div>
 
         </div>
@@ -356,12 +234,22 @@
 <section id="videos_ant" class="section">
   <div class="container ">
     <h2 class="title is-3 has-text-centered">Ant-v5 Agent Dynamics Using A Fixed Component</h2>
-    
+    <p>
+      This section evaluates the behavior of the Ant-v5 agent when consistently utilizing a single, fixed component policy \(\pi_k\) from the learned mixture policy. 
+      By isolating and deploying one component at a time, we can observe the distinct behaviors and strategies that each component has specialized in during training. 
+      This analysis provides insights into how different components contribute to the overall performance and adaptability of the agent in navigating its environment.
+    </p>
+    <br>
+    <br>
     <div class="columns is-centered">
 
       <div class="column">
         <div class="content">
-          <h4 class="title is-4 "> \(\sigma = 0\) (Deterministic) </h4>
+          <h4 class="title is-4  has-text-centered"> \( a = \mu_k \) </h4>
+          <p style="text-align: justify;">
+            The agent consistently uses the mode (most probable action) of a selected component policy \(\pi_k\) at each time step, resulting in deterministic behavior.
+          </p>
+
           <video id="video_sac" autoplay controls muted loop playsinline height="100%">
             <source src="./static/videos/grid_video_white_det_alpha_0_1.mp4"
                     type="video/mp4">
@@ -373,9 +261,12 @@
       </div>
 
       <div class="column">
-        <h4 class="title is-4">\(\sigma = 0.1\)</h4>
+        <h4 class="title is-4  has-text-centered">\( a \sim \pi_k = \mathcal{N}(\mu_k(s), \Sigma_k(s))\)</h4>
         <div class="columns is-centered">
           <div class="column content">
+            <p style="text-align: justify;">
+              The agent samples actions from the component policy \(\pi_k = \mathcal{N}(\mu_k(s), \Sigma_k(s))\), where the diagonal elements of the covariance matrix \(\Sigma_k(s)\) are limited from above by \(0.1\).
+            </p>
             <video id="video_mop" autoplay controls muted loop playsinline height="100%">
               <source src="./static/videos/grid_video_white_std_0_1_alpha_0_1.mp4"
                       type="video/mp4">
@@ -390,97 +281,106 @@
     </div>
   </div>
 </section> 
+  <section id="videos_swimmer_fixed_component" class="section">
+    <div class="container ">
+      <h2 class="title is-3 has-text-centered">Swimmer-v5 Agent Dynamics Using A Fixed Component</h2>
+      <p>
+        This section evaluates the behavior of the Swimmer-v5 agent when consistently utilizing a single, fixed component policy \(\pi_k\) from the learned mixture policy.
+        By isolating and deploying one component at a time, we can observe the distinct behaviors and strategies that each component has specialized in during training.
+        This analysis provides insights into how different components contribute to the overall performance and adaptability of the agent in navigating its environment.
+      </p>
+      <br>
+      <br>
+      <div class="columns is-centered">
 
-<section id="videos_swimmer" class="section">
-  <div class="container ">
-    <h2 class="title is-3 has-text-centered">Swimmer-v5 Agent Dynamics Using A Fixed Component</h2>
-    
-    <div class="columns is-centered">
-
-      <div class="column">
-        <div class="content">
-          <h4 class="title is-4 "> \(\sigma = 0\) (Deterministic) </h4>
-          <video id="video_sac" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/swimmer_std_0_0.mp4"
-                    type="video/mp4">
-          </video>
-          <!-- <p>
-            Incorporates entropy regularization into its objective function to balance exploration and exploitation. 
-          </p> -->
-        </div>
-      </div>
-
-      <div class="column">
-        <h4 class="title is-4">\(\sigma = 0.1\)</h4>
-        <div class="columns is-centered">
-          <div class="column content">
-            <video id="video_mop" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/Swimmer_std_0_1.mp4"
+        <div class="column">
+          <div class="content">
+            <h4 class="title is-4 has-text-centered"> \( a = \mu_k \) </h4>
+            <p style="text-align: justify;">
+              The agent consistently uses the mode (most probable action) of a selected component policy \(\pi_k\) at each time step, resulting in deterministic behavior.
+            </p>
+            <video id="video_swimmer_det" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/swimmer_std_0_0.mp4"
                       type="video/mp4">
             </video>
-            <!-- <p>
-              Maximizes the occupancy of action-state space by maximizing cumulative action entropy
-            </p>  -->
           </div>
+        </div>
 
+        <div class="column">
+          <h4 class="title is-4 has-text-centered">\( a \sim \pi_k = \mathcal{N}(\mu_k(s), \Sigma_k(s))\)</h4>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p style="text-align: justify;">
+                The agent samples actions from the component policy \(\pi_k = \mathcal{N}(\mu_k(s), \Sigma_k(s))\), where the diagonal elements of the covariance matrix \(\Sigma_k(s)\) are limited from above by \(0.1\).
+              </p>
+              <video id="video_swimmer_stoc" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/Swimmer_std_0_1.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section> 
+  </section>
 
 
-<section id="videos_fetch" class="section">
-  <div class="container ">
-    <h2 class="title is-3 has-text-centered">Fetch Robot Agent Dynamics Using A Fixed Component</h2>
-    
-    <div class="columns is-centered">
+  <section id="videos_fetch_fixed_component" class="section">
+    <div class="container ">
+      <h2 class="title is-3 has-text-centered">FetchReach-v5 Agent Dynamics Using A Fixed Component</h2>
+      <p>
+        This section evaluates the behavior of the FetchReach-v5 agent when consistently utilizing a single, fixed component policy \(\pi_k\) from the learned mixture policy.
+        By isolating and deploying one component at a time, we can observe the distinct behaviors and strategies that each component has specialized in during training.
+        This analysis provides insights into how different components contribute to the overall performance and adaptability of the agent in navigating its environment.
+      </p>
+      <br>
+      <br>
+      <div class="columns is-centered">
 
-      <div class="column">
-        <div class="content">
-          <h4 class="title is-4 "> \(\sigma = 0\) (Deterministic) </h4>
-          <video id="video_sac" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fetchreach_std_0_0.mp4"
-                    type="video/mp4">
-          </video>
-          <!-- <p>
-            Incorporates entropy regularization into its objective function to balance exploration and exploitation. 
-          </p> -->
-        </div>
-      </div>
-
-      <div class="column">
-        <h4 class="title is-4">\(\sigma = 0.1\)</h4>
-        <div class="columns is-centered">
-          <div class="column content">
-            <video id="video_mop" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/fetchreach_std_0.1.mp4"
+        <div class="column">
+          <div class="content">
+            <h4 class="title is-4 has-text-centered"> \( a = \mu_k \) </h4>
+            <p style="text-align: justify;">
+              The agent consistently uses the mode (most probable action) of a selected component policy \(\pi_k\) at each time step, resulting in deterministic behavior.
+            </p>
+            <video id="video_fetch_det" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/fetchreach_std_0_0.mp4"
                       type="video/mp4">
             </video>
-            <!-- <p>
-              Maximizes the occupancy of action-state space by maximizing cumulative action entropy
-            </p>  -->
           </div>
+        </div>
 
+        <div class="column">
+          <h4 class="title is-4 has-text-centered">\( a \sim \pi_k = \mathcal{N}(\mu_k(s), \Sigma_k(s))\)</h4>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p style="text-align: justify;">
+                The agent samples actions from the component policy \(\pi_k = \mathcal{N}(\mu_k(s), \Sigma_k(s))\), where the diagonal elements of the covariance matrix \(\Sigma_k(s)\) are limited from above by \(0.1\).
+              </p>
+              <video id="video_fetch_stoc" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/fetchreach_std_0.1.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section> 
+  </section>
 
 
 
 <section id="videos_random" class="section">
   <div class="container ">
     <div class="content has-text-justified">
-      <h2 class="title is-3">Comparison between our method and using random set of actions</h2>
+      <h2 class="title is-3" style="text-align: justify;">Comparison between our method and using random set of actions</h2>
       <p>
-      This section evaluates our method’s ability to control the complex dynamics of the MuJoCo Humanoid task, where randomly generated actions invariably fail. 
-      In the default environment, episodes terminate if the torso’s z‑coordinate (height) falls outside the healthy interval \[1.0, 2.0]. 
-      We compare our approach against two random‑action baselines: (1) discretized sampling, in which K actions are generated by drawing each action dimension independently from {–magnitude, 0, + magnitude}—with magnitudes of 0.05, 0.1, 0.2, 0.3, and 0.4 and K equal to 4, 8, 16, 32, 64, or 128—and (2) uniform sampling across the continuous action space. Across every tested magnitude and number of generated actions, neither baseline produces sustained or meaningful Humanoid behaviors under this termination criterion.
+      This section evaluates our method&#8217;s ability to control the complex dynamics of the MuJoCo Humanoid and Walker2d tasks, where randomly generated actions invariably fail. 
+      <br> 
+      For example, in the default Humanoid-v5 environment, episodes terminate if the torso&#8217;s z&#8209;coordinate (height) falls outside the healthy interval \\(1.0,\,2.0\\). 
+      We compare our approach against two random&#8209;action baselines: (1) discretized sampling, in which K actions are generated by drawing each action dimension independently from {&minus;magnitude, 0, + magnitude}&mdash;with magnitudes of 0.05, 0.1, 0.2, 0.3, and 0.4 and K equal to 4, 8, 16, 32, 64, or 128&mdash;and (2) uniform sampling across the continuous action space. Across every tested magnitude and number of generated actions, neither baseline produces sustained or meaningful Humanoid behaviors under this termination criterion.
       </p>
     </div>
-    
     
     <div id="videos_random_humanoid" class="columns is-centered">
 
@@ -491,9 +391,6 @@
             <source src="./static/videos/Humanoid-v5_agent_video_1_compressed.mp4"
                     type="video/mp4">
           </video>
-          <!-- <p>
-            Incorporates entropy regularization into its objective function to balance exploration and exploitation. 
-          </p> -->
         </div>
       </div>
 
@@ -505,9 +402,6 @@
               <source src="./static/videos/Humanoid-v5_comprehensive_analysis_1_compressed.mp4"
                       type="video/mp4">
             </video>
-            <!-- <p>
-              Maximizes the occupancy of action-state space by maximizing cumulative action entropy
-            </p>  -->
           </div>
 
         </div>
@@ -523,9 +417,6 @@
             <source src="./static/videos/Walker2d-v5_agent_video_f20250722_094445_compressed.mp4"
                     type="video/mp4">
           </video>
-          <!-- <p>
-            Incorporates entropy regularization into its objective function to balance exploration and exploitation. 
-          </p> -->
         </div>
       </div>
 
@@ -537,11 +428,7 @@
               <source src="./static/videos/Walker2d-v5_comprehensive_analysis_1_compressed.mp4"
                       type="video/mp4">
             </video>
-            <!-- <p>
-              Maximizes the occupancy of action-state space by maximizing cumulative action entropy
-            </p>  -->
           </div>
-
         </div>
       </div>
     </div>
@@ -557,13 +444,20 @@
     <div class="content has-text-centered">
       <h2 class="title is-3">Mapping from State to Components</h2>
     </div>
-    
     <div class="content is-centered">
       <div class="columns is-centered">
         <div class="column content is-centered">
+
+          <div style="max-width: 800px; margin: 0 auto;">
+            <p>
+              This section visualizes the state-to-component mapping learned by the mixture policy in the Humanoid-v5 environment. 
+              We can see how our mixture policy has high entropic mixing weights with the low entropic components specialized in different behaviors.
+            </p>
+            <br>
+          </div>
           <video style="display: block; margin: 0 auto;" id="video_humanoid_agent" autoplay controls muted loop playsinline height="50%" width="50%">
-  <source src="./static/videos/Humanoid-v5-agent_praw_video_compressed.mp4" type="video/mp4">
-</video>
+            <source src="./static/videos/Humanoid-v5-agent_praw_video_compressed.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </div> 
@@ -744,16 +638,25 @@
 </section> -->
 
 
+<style>
+  footer.footer {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+    height: auto !important;
+    min-height: unset !important;
+  }
+</style>
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <!-- <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
+       <a class="icon-link"
+         href="https://openreview.net/pdf?id=HhbHw2yInZ">
         <i class="fas fa-file-pdf"></i>
       </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+      <a class="icon-link" href="https://github.com/YamenHabib" class="external-link" disabled>
         <i class="fab fa-github"></i>
-      </a> -->
+      </a> 
     </div>
     <div class="columns is-centered">
       <div class="column is-8">
