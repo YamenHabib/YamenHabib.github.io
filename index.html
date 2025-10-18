@@ -1,228 +1,339 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yamen Habib</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <meta name="author" content="Yamen Habib">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
-  <script src="main.js"></script>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #fafafa;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Header Section */
+    .header {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+    }
+
+    .bio {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .name {
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .bio p {
+      text-align: center;
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    .links a {
+      color: #0066cc;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .links a:hover {
+      color: #0052a3;
+    }
+
+    .links span {
+      color: #ccc;
+    }
+
+    .profile-img {
+      flex: 0 0 160px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #f0f0f0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Research Section */
+    .research-header {
+      padding-bottom: 30px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .research-header h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .research-header p {
+      font-size: 15px;
+      color: #666;
+    }
+
+    /* Projects Section */
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 1fr 2.5fr;
+      gap: 24px;
+      padding: 24px;
+      background: white;
+      border-radius: 8px;
+      transition: box-shadow 0.2s;
+    }
+
+    .project:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .project-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #f5f5f5;
+      aspect-ratio: 1;
+    }
+
+    .project-image img,
+    .project-image video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-image-base {
+      display: block;
+    }
+
+    .project-image-hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-image:hover .project-image-hover {
+      opacity: 1;
+    }
+
+    .project-content h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .project-content h3 a {
+      color: #0066cc;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .project-content h3 a:hover {
+      color: #0052a3;
+    }
+
+    .project-authors {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #666;
+    }
+
+    .project-authors a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    .project-authors a:hover {
+      text-decoration: underline;
+    }
+
+    .project-meta {
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: #666;
+    }
+
+    .project-meta em {
+      font-style: italic;
+      color: #999;
+    }
+
+    .project-links {
+      font-size: 14px;
+    }
+
+    .project-links a {
+      color: #0066cc;
+      text-decoration: none;
+      margin-right: 16px;
+      transition: color 0.2s;
+    }
+
+    .project-links a:hover {
+      color: #0052a3;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .project {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-img {
+        flex: 0 0 140px;
+        width: 140px;
+        height: 140px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-  <table
-    style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-    <tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr style="padding:0px">
-                <td style="padding:2.5%;width:63%;vertical-align:middle">
-                  <p class="name" style="text-align: center;">
-                    Yamen Habib
-                  </p>
-                  <p>
-                    I am currently pursuing a PhD in Reinforcement Learning and Decision Making as a PhD student at the <a href="https://www.upf.edu/web/ruben-moreno-bote">Moreno Bote Lab </a> in Barcelona.
-                  </p>
-                  <!-- <p>I'm a PhD Student at <a href="https://www.upf.edu/web/ruben-moreno-bote">Moreno Bote Lab </a> in Barcelona, 
-                    where I am doing a PhD in Reinforcement Learning and decision Making.
-                  </p> -->
-                  
-                  <p style="text-align:center">
-                    <a href="mailto:yamenahmadhabib@gmail.com">Email</a> &nbsp;/&nbsp;
-                    <a href="https://scholar.google.es/citations?user=mckjGjcAAAAJ&hl=en">Scholar</a> &nbsp;/&nbsp;
-                    <a href="https://twitter.com/HabibYamen">Twitter</a> &nbsp;/&nbsp;
-                    <a href="https://www.linkedin.com/in/yamen-habib-23415a185/">LinkedIn</a> &nbsp;/&nbsp;
-                    <a href="https://github.com/YamenHabib">Github</a>
-                  </p>
-                </td>
-                <!-- <td style="padding:2.5%;width:40%;max-width:40%">
-                  <a href="images/YamenHabib.jpg"><img
-                      style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo"
-                      src="images/YamenHabib.jpg" class="hoverZoomLink"></a>
-                </td> -->
-                <td style="padding: 2.5%; width: 50%; max-width: 50%;">
-                  <a href="images/YamenHabib.jpg" style="display: block; overflow: hidden; border-radius: 50%;">
-                    <img src="images/YamenHabib.jpg" alt="profile photo" style="width: 100%; height: auto; display: block; transition: transform 0.5s ease;">
-                  </a>
-                </td>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="bio">
+        <p class="name">Yamen Habib</p>
+        <p>I am pursuing a PhD in Reinforcement Learning and Decision Making at the Moreno Bote Lab in Barcelona.</p>
+        <div class="links">
+          <a href="mailto:yamenahmadhabib@gmail.com">Email</a>
+          <span>/</span>
+          <a href="https://scholar.google.es/citations?user=mckjGjcAAAAJ&hl=en">Scholar</a>
+          <span>/</span>
+          <a href="https://twitter.com/HabibYamen">Twitter</a>
+          <span>/</span>
+          <a href="https://www.linkedin.com/in/yamen-habib-23415a185/">LinkedIn</a>
+          <span>/</span>
+          <a href="https://github.com/YamenHabib">Github</a>
+        </div>
+      </div>
+      <div class="profile-img">
+        <img src="images/YamenHabib.jpg" alt="Yamen Habib">
+      </div>
+    </div>
 
-              </tr>
-            </tbody>
-          </table>
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:20px;width:100%;vertical-align:middle">
-                  <h2>Research</h2>
-                  <p>
-                    I'm interested in Reinforcement learning, deep learning, Optimization, and Learning theory.
-                    <!-- Representative papers are <span class="highlight">highlighted</span>. -->
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    <!-- Research -->
+    <section class="research-header">
+      <h2>Research</h2>
+      <p>I'm interested in Reinforcement learning, deep learning, Optimization, and Learning theory.</p>
+    </section>
 
-        </td>
-      </tr>
-
-
-
-      
-  </table>
-
-  <table
-    style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-    <tbody>
-
-           <tr onmouseout="nuvo_stop()" onmouseover="nuvo_start()">
-        <td style="padding:20px;width:25%;vertical-align:middle">
-          <div class="one">
-            <div class="two" id='nuvo_image'><video  width=100% muted autoplay loop>
-            <source src="images/mop.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-            </video></div>
-            <img src='images/mop.png' width=100%>
+    <!-- Projects -->
+    <section class="projects">
+      <!-- Project 1 -->
+      <article class="project">
+        <div class="project-image">
+          <img src="maxi-mix-mini-com/static/images/intro.PNG" alt="Project" class="project-image-base">
+          <div class="project-image-hover">
+            <video muted autoplay loop playsinline>
+              <source src="maxi-mix-mini-com/static/videos/ant_generate_video_uniform_com_std_0_0_a_0_1.mp4" type="video/mp4">
+            </video>
           </div>
-          <script type="text/javascript">
-            function nuvo_start() {
-              document.getElementById('nuvo_image').style.opacity = "1";
-            }
-
-            function nuvo_stop() {
-              document.getElementById('nuvo_image').style.opacity = "0";
-            }
-            nuvo_stop()
-          </script>
-        </td>
-        <td style="padding:20px;width:75%;vertical-align:middle">
-          <a href="maxi-mix-mini-com/">
-            <span class="papertitle">Unsupervised Action-Policy Quantization via Maximum Entropy Mixture Policies with Minimum Entropy Components</span>
-          </a>
-          <br>
-          <a href="https://yamenhabib.com">Yamen Habib</a>,
-          <strong>Dmytro Grytskyy</strong>,
-          <a href="https://www.upf.edu/web/ruben-moreno-bote">Rubén Moreno-Bote</a>
-          <br>
-          <em>arxiv</em>, 2024
-          <br>
-          
-          <a href="maxi-mix-mini-com/">Project Page</a> 
-          / 
-          <a href="https://x.com/MorenoBote/status/1817952169342984579">Thread</a>
-          /
-          <a href="https://www.nature.com/articles/s41467-024-49711-1">Paper</a>
-          <p></p>
-          <!-- <p>
-          Neural fields let you recover editable UV mappings for the challenging geometries produced by NeRF-like models.
-          </p> -->
-        </td>
-
-    </tr>
-
-
-
-      <tr onmouseout="nuvo_stop()" onmouseover="nuvo_start()">
-        <td style="padding:20px;width:25%;vertical-align:middle">
-          <div class="one">
-            <div class="two" id='nuvo_image'><video  width=100% muted autoplay loop>
-            <source src="images/mop.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-            </video></div>
-            <img src='images/mop.png' width=100%>
+        </div>
+        <div class="project-content">
+          <h3><a href="maxi-mix-mini-com/">Unsupervised Action-Policy Quantization via Maximum Entropy Mixture Policies with Minimum Entropy Components</a></h3>
+          <div class="project-authors">
+            <a href="https://yamenhabib.com">Yamen Habib</a>, <strong>Dmytro Grytskyy</strong>, <a href="https://www.upf.edu/web/ruben-moreno-bote">Rubén Moreno-Bote</a>
           </div>
-          <script type="text/javascript">
-            function nuvo_start() {
-              document.getElementById('nuvo_image').style.opacity = "1";
-            }
-
-            function nuvo_stop() {
-              document.getElementById('nuvo_image').style.opacity = "0";
-            }
-            nuvo_stop()
-          </script>
-        </td>
-        <td style="padding:20px;width:75%;vertical-align:middle">
-          <a href="ORDRP/">
-            <span class="papertitle">Enhancing Exploration via Off-Reward Dynamic Reference Reinforcement Learning</span>
-          </a>
-          <br>
-          <a href="https://yamenhabib.com">Yamen Habib</a>,
-          <strong>Dmytro Grytskyy</strong>,
-          <a href="https://www.upf.edu/web/ruben-moreno-bote">Rubén Moreno-Bote</a>
-          <br>
-          <em>arxiv</em>, 2024
-          <br>
-          
-          <a href="ORDRP/">Project Page</a> 
-          / 
-          <a href="https://x.com/MorenoBote/status/1817952169342984579">Thread</a>
-          /
-          <a href="https://www.nature.com/articles/s41467-024-49711-1">Paper</a>
-          <p></p>
-          <!-- <p>
-          Neural fields let you recover editable UV mappings for the challenging geometries produced by NeRF-like models.
-          </p> -->
-        </td>
-        
-    </tr>
-
-      <tr onmouseout="nuvo_stop()" onmouseover="nuvo_start()">
-        <td style="padding:20px;width:25%;vertical-align:middle">
-          <div class="one">
-            <div class="two" id='nuvo_image'><video  width=100% muted autoplay loop>
-            <source src="images/mop.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-            </video></div>
-            <img src='images/mop.png' width=100%>
+          <div class="project-meta"><em>EWRL</em>, 2025</div>
+          <div class="project-links">
+            <a href="maxi-mix-mini-com/">Project Page</a>
           </div>
-          <script type="text/javascript">
-            function nuvo_start() {
-              document.getElementById('nuvo_image').style.opacity = "1";
-            }
+        </div>
+      </article>
 
-            function nuvo_stop() {
-              document.getElementById('nuvo_image').style.opacity = "0";
-            }
-            nuvo_stop()
-          </script>
-        </td>
-        <td style="padding:20px;width:75%;vertical-align:middle">
-          <a href="https://www.nature.com/articles/s41467-024-49711-1">
-            <span class="papertitle">Complex behavior from intrinsic motivation to occupy future action-state path space</span>
-          </a>
-          <br>
-          <strong>Jorge Ramírez-Ruiz</strong>,
-          <strong>Dmytro Grytskyy</strong>,
-          <strong>Chiara Mastrogiuseppe</strong>,
-          <a href="https://yamenhabib.com">Yamen Habib</a>,
-          <a href="https://www.upf.edu/web/ruben-moreno-bote">Rubén Moreno-Bote</a>
-          <br>
-          <em>Nature Communications</em>, 2024
-          <br>
-          
-          <a href="https://x.com/MorenoBote/status/1817952169342984579">thread</a>
-          /
-          <a href="https://www.nature.com/articles/s41467-024-49711-1">paper</a>
-          <p></p>
-          <!-- <p>
-          Neural fields let you recover editable UV mappings for the challenging geometries produced by NeRF-like models.
-          </p> -->
-        </td>
-    </tr> 
+      <!-- Project 2 -->
+      <article class="project">
+        <div class="project-image">
+          <img src="ORDRP/static/images/intro.jpg" alt="Project" class="project-image-base">
+          <div class="project-image-hover">
+            <img src="ORDRP/static/images/intro.jpg" alt="Project">
+          </div>
+        </div>
+        <div class="project-content">
+          <h3><a href="ORDRP/">Enhancing Exploration via Off-Reward Dynamic Reference Reinforcement Learning</a></h3>
+          <div class="project-authors">
+            <a href="https://yamenhabib.com">Yamen Habib</a>, <strong>Dmytro Grytskyy</strong>, <a href="https://www.upf.edu/web/ruben-moreno-bote">Rubén Moreno-Bote</a>
+          </div>
+          <div class="project-meta"><em>EWRL</em>, 2024</div>
+          <div class="project-links">
+            <a href="ORDRP/">Project Page</a> 
+          </div>
+        </div>
+      </article>
 
-       
-  </table>
-
-  
+      <!-- Project 3 -->
+      <article class="project">
+        <div class="project-image">
+          <img src="images/mop.png" alt="Project" class="project-image-base">
+          <div class="project-image-hover">
+            <video muted autoplay loop playsinline>
+              <source src="images/mop.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3><a href="https://www.nature.com/articles/s41467-024-49711-1">Complex behavior from intrinsic motivation to occupy future action-state path space</a></h3>
+          <div class="project-authors">
+            <strong>Jorge Ramírez-Ruiz</strong>, <strong>Dmytro Grytskyy</strong>, <strong>Chiara Mastrogiuseppe</strong>, <a href="https://yamenhabib.com">Yamen Habib</a>, <a href="https://www.upf.edu/web/ruben-moreno-bote">Rubén Moreno-Bote</a>
+          </div>
+          <div class="project-meta"><em>Nature Communications</em>, 2024</div>
+          <div class="project-links">
+            <a href="https://x.com/MorenoBote/status/1817952169342984579">Thread</a> / <a href="https://www.nature.com/articles/s41467-024-49711-1">Paper</a>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
 </body>
-
 </html>
